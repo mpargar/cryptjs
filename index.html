@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CryptJs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="cryptJs.js"></script>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>CryptJS</h1>
+        <div>
+            
+        </div>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            letras: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+            text : 'La UABCS en conjunto con el DASC y otras universidades organizan el primer congreso internacional en el area de inclusions'
+        }
+    })
+    // Encriptar
+
+    console.log(
+        cryptJs.cesar.encrypt(text, -3, letras, 1),
+        cryptJs.bloque.encrypt(text, 3, 7, 5, letras, 1)
+    )
+
+    // Desencriptar
+    /**
+     * n: -3
+     * nCase: 1
+     */
+    let text2 = 'IX RXYZP BK ZMKGRKQM ZMK BI AXPZ V MQOXP RKFSBOPFAXABP MODXKFWXK BI NOFJBO ZMKDOBPM FKQBOKXZFMKXI BK BI XOBX AB FKZIRPFMKP'
+</script>
+</html>
