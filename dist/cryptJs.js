@@ -78,7 +78,7 @@
         bloque : {
             encrypt: (str, bloque, sustitucion, intercambio, caracteres, ulCase) => {
                 /* Separar en bloques */
-                var b = str.split(' ').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
+                var b = str.split('').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
                     return cryptJs.cesar.encrypt(e, sustitucion, caracteres, ulCase)
                 })
                 /* Intercambio */
@@ -86,7 +86,8 @@
                 for (let i = 0; i < b.length; i++) {
                     inter[(i + intercambio) % b.length] = b[i]
                 }
-                return inter
+                console.log(inter);
+                return inter.join('')
             }
         }
     } 

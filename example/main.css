@@ -16,3 +16,6 @@ html body {
   justify-content: center;
   justify-items: center;
 }
+html body #app ul {
+  list-style: none;
+}

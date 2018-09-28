@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CryptJs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="../dist/cryptJs.js"></script>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>CryptJS</h1>
+        <ul>
+            <li>
+                <label>Tipo de encriptado: </label>
+                <select v-model="encriptado">
+                    <option value="0" selected>Cesar</option>
+                    <option value="1">Bloque</option>
+                </select>
+            </li>
+            <li>
+                <p>Texto: </p>
+                <textarea v-model="text" cols="30" rows="10"></textarea>
+            </li>
+            <template v-if="encriptado == '1'">
+                <li>
+                    <label>Bloque: </label>
+                    <input type="number" v-model="bloque">
+                </li>
+                <li>
+                    <label>Sustitución: </label>
+                    <input type="number" v-model="sustitucion">
+                </li>
+                <li>
+                    <label>Intercambio</label>
+                    <input type="number" v-model="intercambio">
+                </li>
+            </template>
+            <li>
+                <h4>Result:</h4>
+                <p>{{ result }}</p>
+            </li>
+            <button @click="encriptar()" >Encriptar!</button>
+            <button @click="desencriptar()" >Desencriptar!</button>
+        </ul>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            letras: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+            text : 'La UABCS en conjunto con el DASC y otras universidades organizan el primer congreso internacional en el area de inclusions',
+            encriptado: '0',
+            bloque: 1,
+            sustitucion: 0,
+            intercambio: 0,
+            result: ""
+        },
+        mounted: function()  {
+            // Encriptar
+            console.log(
+                window.cryptJs.cesar.encrypt(this.text, -3, this.letras, 1),
+                "\n ------- \n",
+                window.cryptJs.bloque.encrypt(this.text, 3, 7, 5, this.letras, 1)
+            )
+        },
+        methods: {
+            encriptar(){
+                switch (this.encriptado) {
+                    case '0':
+                        this.result = window.cryptJs.cesar.encrypt(this.text, 3, this.letras, 1)
+                        break;
+                    case '1':
+                        this.result = window.cryptJs.bloque.encrypt(this.text, this.bloque, this.sustitucion, this.intercambio, this.letras, 1)
+                        break;
+                }   
+            },
+            desencriptar(){
+
+            }
+        }
+    })
+    // Desencriptar
+    /**
+     * n: -3
+     * nCase: 1
+     */
+    let text2 = 'IX RXYZP BK ZMKGRKQM ZMK BI AXPZ V MQOXP RKFSBOPFAXABP MODXKFWXK BI NOFJBO ZMKDOBPM FKQBOKXZFMKXI BK BI XOBX AB FKZIRPFMKP'
+</script>
+</html>
