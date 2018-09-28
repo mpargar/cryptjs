@@ -64,16 +64,16 @@
         mounted: function()  {
             // Encriptar
             console.log(
-                window.cryptJs.cesar.encrypt(this.text, -3, this.letras, 1),
-                "\n ------- \n",
-                window.cryptJs.bloque.encrypt(this.text, 3, 7, 5, this.letras, 1)
+                window.cryptJs.cesar.encrypt(this.text, 3, this.letras, 1)
+                //window.cryptJs.bloque.encrypt(this.text, 3, 7, 5, this.letras, 1)
             )
         },
         methods: {
             encriptar(){
+                console.log(this.text)
                 switch (this.encriptado) {
                     case '0':
-                        this.result = window.cryptJs.cesar.encrypt(this.text, 3, this.letras, 1)
+                        this.result = window.cryptJs.cesar.encrypt(this.text, 1, this.letras, 1)
                         break;
                     case '1':
                         this.result = window.cryptJs.bloque.encrypt(this.text, this.bloque, this.sustitucion, this.intercambio, this.letras, 1)
@@ -81,7 +81,14 @@
                 }   
             },
             desencriptar(){
-
+                switch (this.encriptado) {  
+                    case '0':
+                        this.result = window.cryptJs.cesar.decrypt(this.text, 3, this.letras, 1)
+                        break;
+                    case '1':
+                        this.result = window.cryptJs.bloque.encrypt(this.text, this.bloque, this.sustitucion, this.intercambio, this.letras, 1)
+                        break;
+                }
             }
         }
     })

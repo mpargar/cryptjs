@@ -9,7 +9,7 @@
   }
 })(function(){
     return {
-        cesar : {
+        cesar: {
             /**
              * --------------------
              * ENCRIPTACIÓN CESAR |
@@ -55,38 +55,48 @@
                             : (nCase == 2 ? e.toLowerCase() : e)
                     ))) ?
                         l[(l.indexOf(
-                            nCase == 1 ? e.toUpperCase() :
-                                (nCase == 2 ? e.toLowerCase() : e)
-                        ) + (n < 0 ? (n * -1) : (((n*-1) % l.length)+l.length)) % l.length)]
+                            nCase == 1
+                                ? e.toUpperCase()
+                                : (nCase == 2 ? e.toLowerCase() : e)
+                        ) + (n < 0 ? (-n) : ((-n % l.length) + l.length))) % l.length]
                         : e
                 ).join('')
         },
-            /**
-             * --------------------------
-             * ENCRIPTACIÓN POR BLOQUES |
-             * --------------------------
-             * str = Entrada de texto a encriptar
-             * bloque = Tamaño del bloque definido
-             * sustitución = Movimiento en caracteres
-             * intercambio = Numero 
-             * caracteres = Arreglod  lettras validas a encriptar
-             * ulCase = Entero que:
-             * * 1-> Cambia el case a mayusculas
-             * * 2-> Cambia el case a minusculas
-             * * Omision -> No cambia el case
-             */
-        bloque : {
+        /**
+         * --------------------------
+         * ENCRIPTACIÓN POR BLOQUES |
+         * --------------------------
+         * str = Entrada de texto a encriptar
+         * bloque = Tamaño del bloque definido
+         * sustitución = Movimiento en caracteres
+         * intercambio = Numero 
+         * caracteres = Arreglod  lettras validas a encriptar
+         * ulCase = Entero que:
+         * * 1-> Cambia el case a mayusculas
+         * * 2-> Cambia el case a minusculas
+         * * Omision -> No cambia el case
+         */
+        bloque: {
             encrypt: (str, bloque, sustitucion, intercambio, caracteres, ulCase) => {
                 /* Separar en bloques */
-                var b = str.split('').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
-                    return cryptJs.cesar.encrypt(e, sustitucion, caracteres, ulCase)
-                })
-                /* Intercambio */
                 var inter = []
-                for (let i = 0; i < b.length; i++) {
-                    inter[(i + intercambio) % b.length] = b[i]
-                }
-                console.log(inter);
+                var b = str.split('').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
+                    return cryptJs.cesar.encrypt(((bloque - e.length == 0
+                        ? e
+                        : (bloque - e.length == 1 ? e + " " : e + "  ")
+                    )), sustitucion, caracteres, ulCase)
+                }).map((e, i, l) =>
+                    inter[(i + (intercambio < 0 ? (intercambio % l.length + l.length) : intercambio)) % l.length] = e
+                )
+                return inter.join('')
+            },
+            decrypt: (str, bloque, sustitucion, intercambio, caracteres, ulCase) => {
+                var inter = []
+                var b = str.split('').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
+                    return cryptJs.cesar.decrypt(e, sustitucion, caracteres, ulCase)
+                }).map((e, i, l) =>
+                    inter[(i + (intercambio < 0 ? (-intercambio) : ((-intercambio % l.length) + l.length))) % l.length] = e
+                )
                 return inter.join('')
             }
         }
