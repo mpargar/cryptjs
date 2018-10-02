@@ -1,7 +1,15 @@
+@bg: #1E1E1E;
+@primary: #FF9900;
+@secondary: rgb(182, 182, 182);
+@colorBtn: white;
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul{
+    list-style: none;
 }
 
 html{
@@ -10,14 +18,137 @@ html{
     body{
         height: 100vh;
         width: 100vw;
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
         #app{
-            ul{
-                list-style: none;
+            height: 100vh;
+            width: 100vw;
+            header{
+                padding: 5px 10px;
+                display: flex;
+                background-color: @bg;
+                align-items: center;
+                justify-content: center;
+                box-shadow: -1px 6px 8px -3px rgba(0,0,0,0.27);
+                position: fixed;
+                top: 0;
+                left: 0;                
+                right: 0;                
+                img{
+                    max-width: 200px;
+                    transition: all ease-in-out 0.3s;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+            }
+            #content{
+                display: flex;
+                flex-direction: row;
+                height: 100vh;
+                .label{
+                    margin-bottom: 6px;
+                    color: white;
+                }
+                .object{
+                    margin-bottom: 20px;
+                }
+                input{
+                    padding: 5px;
+                    border-radius: 3px;
+                    outline: none;
+                    border: none;
+                    transition: all ease-in-out 0.3s;
+                    background: rgb(226, 226, 226);
+                    &:hover{
+                        transform: scale(1.05);
+                    }
+                }
+                button{
+                    user-select: none;
+                    transition: all ease-in-out 0.3s;
+                    padding: 5px 10px;
+                    background: @primary;
+                    margin-right: 10px;
+                    cursor: pointer;
+                    border-radius: 3px;
+                    outline: none;
+                    border: none;
+                    font-weight: 700;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                    &:active{
+                    transition: all ease-in-out 0.1s;
+                        background: darken(@primary, 10%);
+                    }
+                }
+                textarea{
+                    border-radius: 3px;
+                    width: 100%;
+                    max-width: ~"calc(100% - 10px)";
+                    padding: 5px;
+                    outline: none;
+                    border: none;
+                    transition: all ease-in-out 0.3s;
+                    background: rgb(226, 226, 226);
+                    &:hover{
+                        transform: scale(1.02);
+                    }
+                }
+                >li{
+                    max-height: 100vh;
+                    padding: 10px;
+                    padding-top: 100px;
+                    &:first-child{
+                        background: #3e3e3e;
+                        width: 60vw;
+                        .options{
+                            width: 100%;
+                            display: flex;
+                            >li{
+                                margin-right: 10px;
+                                input{
+                                    max-width: 80px;
+                                    text-align: center;
+                                }
+                                &:last-child{
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                    &:last-child{
+                        //background: rgb(226, 226, 226);
+                        background: @bg;
+                        width: 40vw;
+                        .output{
+                            color: @primary;
+                            font-size: 20px;
+                        }
+                        *{
+                            font-family: 'Space Mono', monospace;
+                        }
+                    }
+                }
+                .menu{
+                    display: flex;
+                    >li{
+                        user-select: none;
+                        transition: all ease-in-out 0.3s;
+                        padding: 5px 10px;
+                        background: @secondary;
+                        margin-right: 10px;
+                        cursor: pointer;
+                        border-radius: 3px;
+                        &:hover{
+                            background: @primary;
+                            transform: scale(1.1);
+                        }
+                    }
+                    .activo{
+                        background: @primary;
+                        color: @colorBtn;
+                    }
+                }
             }
         }
     }

@@ -1,7 +1,10 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Roboto', sans-serif;
+}
+ul {
+  list-style: none;
 }
 html {
   height: 100vh;
@@ -10,12 +13,136 @@ html {
 html body {
   height: 100vh;
   width: 100vw;
+}
+html body #app {
+  height: 100vh;
+  width: 100vw;
+}
+html body #app header {
+  padding: 5px 10px;
   display: flex;
-  align-content: center;
+  background-color: #1E1E1E;
   align-items: center;
   justify-content: center;
-  justify-items: center;
+  box-shadow: -1px 6px 8px -3px rgba(0, 0, 0, 0.27);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-html body #app ul {
-  list-style: none;
+html body #app header img {
+  max-width: 200px;
+  transition: all ease-in-out 0.3s;
+}
+html body #app header img:hover {
+  transform: scale(1.1);
+}
+html body #app #content {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+html body #app #content .label {
+  margin-bottom: 6px;
+  color: white;
+}
+html body #app #content .object {
+  margin-bottom: 20px;
+}
+html body #app #content input {
+  padding: 5px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  transition: all ease-in-out 0.3s;
+  background: #e2e2e2;
+}
+html body #app #content input:hover {
+  transform: scale(1.05);
+}
+html body #app #content button {
+  user-select: none;
+  transition: all ease-in-out 0.3s;
+  padding: 5px 10px;
+  background: #FF9900;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  font-weight: 700;
+}
+html body #app #content button:hover {
+  transform: scale(1.1);
+}
+html body #app #content button:active {
+  transition: all ease-in-out 0.1s;
+  background: #cc7a00;
+}
+html body #app #content textarea {
+  border-radius: 3px;
+  width: 100%;
+  max-width: calc(100% - 10px);
+  padding: 5px;
+  outline: none;
+  border: none;
+  transition: all ease-in-out 0.3s;
+  background: #e2e2e2;
+}
+html body #app #content textarea:hover {
+  transform: scale(1.02);
+}
+html body #app #content > li {
+  max-height: 100vh;
+  padding: 10px;
+  padding-top: 100px;
+}
+html body #app #content > li:first-child {
+  background: #3e3e3e;
+  width: 60vw;
+}
+html body #app #content > li:first-child .options {
+  width: 100%;
+  display: flex;
+}
+html body #app #content > li:first-child .options > li {
+  margin-right: 10px;
+}
+html body #app #content > li:first-child .options > li input {
+  max-width: 80px;
+  text-align: center;
+}
+html body #app #content > li:first-child .options > li:last-child {
+  margin: 0;
+}
+html body #app #content > li:last-child {
+  background: #1E1E1E;
+  width: 40vw;
+}
+html body #app #content > li:last-child .output {
+  color: #FF9900;
+  font-size: 20px;
+}
+html body #app #content > li:last-child * {
+  font-family: 'Space Mono', monospace;
+}
+html body #app #content .menu {
+  display: flex;
+}
+html body #app #content .menu > li {
+  user-select: none;
+  transition: all ease-in-out 0.3s;
+  padding: 5px 10px;
+  background: #b6b6b6;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+html body #app #content .menu > li:hover {
+  background: #FF9900;
+  transform: scale(1.1);
+}
+html body #app #content .menu .activo {
+  background: #FF9900;
+  color: white;
 }

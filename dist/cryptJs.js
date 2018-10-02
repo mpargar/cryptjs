@@ -1,10 +1,10 @@
 ;(function(factory) {
-  // checking for exports avalible
+  // Verifica el tipo de exportación
   if (typeof module !== 'undefined' && module.exports) {
-    // export Collection
+    // Exportar colección
     module.exports = factory()
   } else {
-    // else add to root variable
+    // Cualquier ruta
     window['cryptJs'] = factory()
   }
 })(function(){
@@ -83,7 +83,7 @@
                 var b = str.split('').join('').match(new RegExp(".{1," + bloque + "}", "g")).map((e) => {
                     return cryptJs.cesar.encrypt(((bloque - e.length == 0
                         ? e
-                        : (bloque - e.length == 1 ? e + " " : e + "  ")
+                        : (bloque - e.length == 1 ? e + "#" : e + "##")
                     )), sustitucion, caracteres, ulCase)
                 }).map((e, i, l) =>
                     inter[(i + (intercambio < 0 ? (intercambio % l.length + l.length) : intercambio)) % l.length] = e
